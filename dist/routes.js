@@ -4,7 +4,7 @@ page('/search/:searchId', searchId);
 page();
 
 //Chamando a função no spript.js que cria a main do index
-async function index(){
+function index(){
 	$("main").html(renderIndex());
 }
 

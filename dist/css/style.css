@@ -1,0 +1,17 @@
+*  {
+    margin:0;
+    padding:0;
+}
+
+html, body {height:100%;}
+
+footer{
+  position: fixed;
+    height: 100px;
+    bottom: 0;
+    width: 100%;
+}
+
+main{
+	height: 100%;
+}
