@@ -1,57 +1,37 @@
-$(document).ready(function () {
-
-var dropAnimal = $("#drop-animal");
-var dropLocation = $("#drop-location");
-
-dropAnimal.change(function () {
-var animal = $("#drop-animal").val();
-if (animal == "none"){
-	alert("seleciona um animal para buscar")
-}
-});
-
-dropLocation.change(function () {
-var animal = $("#drop-animal").val();
-var location = $("#drop-location").val();
-if (animal == "none"){
-	alert("seleciona um animal para buscar");
-} else if (location == "none"){
-	alert("seleciona um local para buscar");
-} else {
-	onloadAnimal(animal, location);
-}
-});
-
-
-});
-
-function onloadAnimal(animal, location) {
-var setApi = `https://api.petfinder.com/pet.find?key=e515c83d1e4ff2efcd3ff7c969df579b&animal=${animal}&location=${location}&format=json`;
-fetch(setApi)
-.then(response => response.json())
-.then(data => showAnimal(data));
-}
-
-function showAnimal(data) {
-	var total = data.petfinder.lastOffset["$t"];
-	var teste = data.petfinder.pets.pet;
-	// console.log(teste);
-	if (total > 0){
-	for (var t of teste) {
-		let name = t.name;
-		let sex = t.sex;
-		let size = t.size;
-		let age = t.age;
-		let breed = t.breed;
-		
-    console.log(breed); 
+	function renderIndex(){
+		return `<a href="/search">Pesquise agora os pets em adoção</a>
+		<p>Aqui irá aparecer a home</p>`
 	}
-} else {
-	alert("Desculpe, não encontramos nenhum animal para adoção nessa região")
+
+	function renderAnimalsList(animals){
+		return `<p>Aqui irá aparecer a lista dos animais pesquisados</p>`
+	}
+
+function renderOptions(){
+	return `<select id="drop-animal">
+		<option value="none" selected>selecione</option>
+		<option value="dog">Dog</option>
+		<option value="cat">Cat</option>
+		<option value="bird">Bird</option>
+		<option value="barnyard">Barnyard</option>
+   	<option value="horse">Horse</option>
+   	<option value="smallfurry">Smallfurry</option>
+  	</select>
+  	<select id="drop-location">
+		<option value="none" selected>selecione</option>
+		<option value="20001">Washington</option>
+		<option value="33124">Miami</option>
+		<option value="32801">Orlando</option>
+   	<option value="90001">Los Angeles</option>
+  	</select>
+  	<div id="result"><div>`
+
+
 }
 
- 
-}
 
 
-// http://api.petfinder.com/pet.find?key=e515c83d1e4ff2efcd3ff7c969df579b&animal=dog&location=90009&format=json
+	
+
+
+
