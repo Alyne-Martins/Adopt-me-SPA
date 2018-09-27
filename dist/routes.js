@@ -4,19 +4,18 @@ page('/search/:searchId', searchId);
 page();
 
 //Chamando a função no spript.js que cria a main do index
- async function index(){
+async function index(){
 	$("main").html(renderIndex());
 }
 
 //Chamando a função no spript.js que cria a main do search
- function search(){
-
+function search(){
  	$("main").html(renderOptions());
 
 	var dropAnimal = $("#drop-animal");
 	var dropLocation = $("#drop-location");
 
-//evento no <option> para saber se foi selecionado algum animal
+	//evento no <option> para saber se foi selecionado algum animal
 	dropAnimal.change(function () {
 		console.log("selecionou animal")
 		var animal = $("#drop-animal").val();
@@ -45,24 +44,28 @@ page();
 function resultSearch(dataPets){
 	var total = dataPets.petfinder.lastOffset["$t"];
 	var pets = dataPets.petfinder.pets.pet;
+		
 	if (total > 0){
-	for (var pet of pets) {
-		let name = pet.name;
-		let sex = pet.sex;
-		let size = pet.size;
-		let age = pet.age;	
- 	}
+		var dataPets = [];
+		for (var pet of pets) {
+			let id = pet.id["$t"];
+			let name = pet.name["$t"];
+			let photo = pet.media.photos.photo[0]["$t"];
+			let sex = pet.sex["$t"];
+			let size = pet.size["$t"];
+			let age = pet.age["$t"];
+			dataPets.push(id, name, photo, sex, size, age);
+			$("#result").html(resultPets(dataPets));
+			dataPets = [];
+		}
 	} else {
 	alert("Desculpe, não encontramos nenhum animal para adoção nessa região")
 	}
-	$("#result").html(renderAnimalsList());
 }
-
 //mostrar pet selecionado
 function searchId(searchId) {
 
 }
-
 
 
 function getPets(animal, location) {
