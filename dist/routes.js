@@ -30,13 +30,14 @@ function search(){
 
 	var dropAnimal = $("#drop-animal");
 	var dropLocation = $("#drop-location");
-
+// || 
 	//evento no <option> para saber se foi selecionado algum animal
 	dropAnimal.change(function () {
 		console.log("selecionou animal")
 		var animal = $("#drop-animal").val();
-		if (animal == "none"){
-			alert("seleciona um animal para buscar")
+		var location = $("#drop-location").val();
+		if (animal !== "none" && location !== "none" ){
+			getPets(animal, location);
 		}
 	});
 
@@ -45,14 +46,9 @@ function search(){
 		console.log("selecionou local")
 		var animal = $("#drop-animal").val();
 		var location = $("#drop-location").val();
-		if (animal == "none"){
-			alert("seleciona um animal para buscar");
-		} else if (location == "none"){
-			alert("seleciona um local para buscar");
-		} else {
-			//chamando a função que pega os pets na api
+		if (animal !== "none" && location !== "none" ){
 			getPets(animal, location);
-		};
+		}
 	});
 }
 
@@ -60,19 +56,27 @@ function search(){
 function resultSearch(dataPets){
 	var total = dataPets.petfinder.lastOffset["$t"];
 	var pets = dataPets.petfinder.pets.pet;
-		
+	console.log(pets);
 	if (total > 0){
-		var arrayPets = [];
 		for (var pet of pets) {
 			let id = pet.id["$t"];
 			let name = pet.name["$t"];
+			var breed = pet.breeds.breed["$t"];
 			let photo = pet.media.photos.photo[0]["$t"];
 			let sex = pet.sex["$t"];
 			let size = pet.size["$t"];
 			let age = pet.age["$t"];
-			arrayPets.push(id, name, photo, sex, size, age);
-			$("#result").html(resultPets(arrayPets));
-			arrayPets = [];
+			console.log(breed);
+			$("#result").append(`
+			<div class="box-pet card border-info mx-2 my-2 p-2" id="${id}">
+				<p class="text-danger font-weight-bold  text-center">${name}</p>
+				<img src="${photo}" class="img-pet img-thumbnail"></img>
+				<p><span class="text-info">Breed: </span>${breed}</p>
+				<p><span class="text-info">Age: </span> ${age}</p>
+				<p><span class="text-info">Sex: </span> ${sex}</p>
+				
+			</div>
+				`);
 		}
 	} else {
 	alert("Desculpe, não encontramos nenhum animal para adoção nessa região")
@@ -85,7 +89,9 @@ function searchId(searchId) {
 
 
 function getPets(animal, location) {
-var setApi = `https://api.petfinder.com/pet.find?key=e515c83d1e4ff2efcd3ff7c969df579b&animal=${animal}&location=${location}&format=json`;
+	var limparMain = document.getElementById("result");
+	limparMain.innerHTML = "";
+	var setApi = `https://api.petfinder.com/pet.find?key=e515c83d1e4ff2efcd3ff7c969df579b&animal=${animal}&location=${location}&format=json`;
 fetch(setApi)
 .then(response => response.json())
 .then(data => resultSearch(data));

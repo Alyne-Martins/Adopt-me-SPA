@@ -1,17 +1,22 @@
-*  {
-    margin:0;
-    padding:0;
+
+.box-pet{
+	background-color: white;
+	border-radius: 5px;
+	height: 300px;
+	box-shadow: 2px 0px 10px #888888;
+	width: 230px;
+	display: flex;
+	flex-direction: column;
+	margin: 20px;
 }
 
-html, body {height:100%;}
-
-footer{
-  position: fixed;
-    height: 100px;
-    bottom: 0;
-    width: 100%;
+.box-pet:hover{
+	background-color: rgba(25,162,184,0.2);
+	cursor: pointer;
 }
 
-main{
-	height: 100%;
+.img-pet {
+	width: 150px;
+	height: 150px;
+	align-self: center;
 }

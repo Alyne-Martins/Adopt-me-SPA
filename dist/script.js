@@ -30,7 +30,7 @@
   <div class="col-sm-6">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title text-primary">
+        <h5 class="card-title text-info">
 Do you want to adopt?</h5>
         <p class="card-text">
 Adoption is an act of love and responsibility. The result is a life filled with joy, love and gratitude.</p>
@@ -42,7 +42,7 @@ Adoption is an act of love and responsibility. The result is a life filled with 
   <div class="col-sm-6">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title text-primary">
+        <h5 class="card-title text-info">
 
 want to help?</h5>
         <p class="card-text">
@@ -65,7 +65,7 @@ function renderOptions(){
   		<div class="input-group-prepend ml-5">
     		<label class="input-group-text" for="inputGroupSelect01">Animal</label>
  		 </div>
-  		<select class="custom-select mr-5" id="inputGroupSelect01">
+  		<select class="custom-select mr-5" id="drop-animal">
     		<option value="none" selected>selecione</option>
 			<option value="dog">Dog</option>
 			<option value="cat">Cat</option>
@@ -80,7 +80,7 @@ function renderOptions(){
   		<div class="input-group-prepend ml-5">
     		<label class="input-group-text" for="inputGroupSelect01">City</label>
  		 </div>
-  		<select class="custom-select mr-5" id="inputGroupSelect01">
+  		<select class="custom-select mr-5" id="drop-location">
     		<option value="none" selected>selecione</option>
 			<option value="20001">Washington</option>
 			<option value="33124">Miami</option>
@@ -89,7 +89,9 @@ function renderOptions(){
  		 </select>
 	</div>
   	</div>
-  	<div id="result"><div>`
+
+  	<div class="d-flex flex-wrap justify-content-around" id="result">
+  	<div>`
 }
 
 
