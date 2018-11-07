@@ -122,16 +122,18 @@ function searchId(searchId) {
 function getPets(animal, location) {
 	var limparMain = document.getElementById("result");
 	limparMain.innerHTML = "";
+	var proxyUrl = 'https://cors-origin.herokuapp.com/';
 	var setApi = `https://api.petfinder.com/pet.find?key=e515c83d1e4ff2efcd3ff7c969df579b&animal=${animal}&location=${location}&format=json`;
-fetch(setApi)
+fetch(proxyUrl + setApi)
 .then(response => response.json())
 .then(data => resultSearch(data));
 }
 
 
 function getPet(id) {
+var proxyUrl = 'https://cors-origin.herokuapp.com/';
 var setId = `https://api.petfinder.com/pet.get?key=e515c83d1e4ff2efcd3ff7c969df579b&id=${id}&format=json`;
-return fetch(setId)
+return fetch(proxyUrl + setId)
 .then(response => response.json())
 .then(data => searchId(data));
 }
